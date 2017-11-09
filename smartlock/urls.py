@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from servo.urls import router as servo_router
 
 urlpatterns = [
-    url(r'servo/', include('servo.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^api/', include(servo_router.urls)),
 ]

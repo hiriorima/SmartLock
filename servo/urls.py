@@ -1,7 +1,5 @@
-from django.conf.urls import url
+from rest_framework import routers
+from .views import ServoViewSet
 
-from . import views
-
-urlpatterns = [
-    url(r'^$', views.index, name='index'),
-]
+router = routers.DefaultRouter()
+router.register(r'servos', ServoViewSet)

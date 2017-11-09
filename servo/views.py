@@ -1,7 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from rest_framework import viewsets
+from .models import Servo
+from .serializer import ServoSerializer
 
-# Create your views here.
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
 
+class ServoViewSet(viewsets.ModelViewSet):
+    queryset = Servo.objects.all()
+    serializer_class = ServoSerializer
