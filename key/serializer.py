@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Key
 
+
 class KeySerializer(serializers.ModelSerializer):
     class Meta:
         model = Key
@@ -13,5 +14,5 @@ class KeySerializer(serializers.ModelSerializer):
         status = data.get('status')
 
         if status != 'open' and status != 'close':
-           raise serializers.ValidationError("incorrect status parameters")
+            raise serializers.ValidationError("incorrect status parameters")
         return value

@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Key(models.Model):
     status = models.CharField(max_length=5)
     created_at = models.DateTimeField(auto_now_add=True)

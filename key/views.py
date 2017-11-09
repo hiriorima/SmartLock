@@ -4,6 +4,7 @@ from .models import Key
 from .serializer import KeySerializer
 from rest_framework.response import Response
 
+
 class KeyViewSet(viewsets.ModelViewSet):
     queryset = Key.objects.all()
     serializer_class = KeySerializer
@@ -11,8 +12,8 @@ class KeyViewSet(viewsets.ModelViewSet):
     def create(self, request):
         serializer = KeySerializer(data=request.data)
         if serializer.is_valid():
-           key = Key(status=serializer.validated_data['status'])
-           key.save()
-           return Response(serializer.data)
+            key = Key(status=serializer.validated_data['status'])
+            key.save()
+            return Response(serializer.data)
         else:
-           return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
