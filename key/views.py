@@ -3,7 +3,7 @@ from rest_framework import status
 from .models import Key
 from .serializer import KeySerializer
 from rest_framework.response import Response
-
+import sys,os
 
 class KeyViewSet(viewsets.ModelViewSet):
     queryset = Key.objects.all()
@@ -14,6 +14,11 @@ class KeyViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             key = Key(status=serializer.validated_data['status'])
             key.save()
+
+            if serializer.validated_data['status'] == 'open':
+                os.system("sudo python ./key/servo_motor.py 50")
+            elif serializer.validated_data['status'] == 'close':
+                os.system("sudo python ./key/servo_motor.py 200")
             return Response(serializer.data)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
