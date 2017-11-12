@@ -1,9 +1,10 @@
 from rest_framework import serializers
-from .models import Servo
+from .models import Key
 
-class ServoSerializer(serializers.ModelSerializer):
+
+class KeySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Servo
+        model = Key
         fields = ('status', 'created_at',)
         extra_kwargs = {'status': {'required': 'True'}}
         validators = []
@@ -13,5 +14,5 @@ class ServoSerializer(serializers.ModelSerializer):
         status = data.get('status')
 
         if status != 'open' and status != 'close':
-           raise serializers.ValidationError("incorrect status parameters")
+            raise serializers.ValidationError("incorrect status parameters")
         return value
